@@ -1,0 +1,81 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>login</title>
+      <style>
+          body{
+            background: linear-gradient(to right, #d0dd8d ,#fbf2ea, #e9cdd9,#f9fbd7);
+          }
+          .your_trip{
+              border: 5px solid black;
+              width: 700px;
+              padding: 10px;
+          }
+          
+          .others_trip{
+              border: 5px solid black;
+              width: 700px;
+              padding: 10px;
+              margin-top: 20px;
+          }
+      </style>
+    </head>
+    <body>
+        <a href="/logout">logout</a>
+            <h1>Hello {{ me.first_name}} !</h1>
+            <h3>Your trip schedules</h3>
+                <table class="your_trip">
+                    <thead>
+                        <tr>
+                            <th>Destination</th>
+                            <th>Travel Start Date</th>
+                            <th>Travel End Date</th>
+                            <th>Plan</th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for trip in my_trips %}
+                        <tr>
+                            <td><a href="/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                            <td>{{trip.travel_date_from}}</td>
+                            <td>{{trip.travel_date_to}}</td>
+                            <td>{{trip.description}}</td>  
+                        </tr>
+                        {% endfor %}
+                        {% for trip in joined_trips %}
+                        <tr>
+                            <td><a href="/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                            <td>{{trip.travel_date_from}}</td>
+                            <td>{{trip.travel_date_to}}</td>
+                            <td>{{trip.description}}</td>  
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            <h3>Other users travel plans</h3>
+                <table class="others_trip">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Destination</th>
+                                <th>Travel Start Date</th>
+                                <th>Travel End Date</th>
+                                <th>Do you want to join?</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for trip in others_trip %}
+                            <tr>
+                                <td>{{ trip.created_by.first_name }} {{ trip.created_by.last_name }}</td>
+                                <td><a href="/destination/{{trip.id}}">{{trip.destination}}</a></td>
+                                <td>{{trip.travel_date_from}}</td>
+                                <td>{{trip.travel_date_to}}</td>
+                                <td><a href="/join/{{trip.id}}">join</a></td>  
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>        
+        <p><a href="/add_travel_plan">Add Travel Plan</a></p>
+
+    </body>
+</html>

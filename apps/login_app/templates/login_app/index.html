@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <title>login</title>
+      <style>
+           body{
+            background: linear-gradient(to right, #d0dd8d ,#fbf2ea, #e9cdd9,#f9fbd7);
+          }
+          .reg{
+              display: inline-block;
+              margin-right: 200px;
+          }
+
+          .login{
+              display: inline-block;
+              vertical-align: top;
+              
+          }
+      </style>
+    </head>
+    <body>
+        <div class="reg">
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            <h1>Registration</h1>
+            <form action="/processreg" method="POST">
+                {% csrf_token %}
+                <p><label for="first_name">First Name:</label></p>
+                <p><input type="text" name="first_name" value=""></p>
+                <p><label for="last_name">Last Name:</label></p>
+                <p><input type="text" name="last_name" value=""></p>
+                <p><label for="email">Email:</label></p>
+                <p><input type="text" name="email" value=""></p>
+                <p><label for="password">Password</label></p>
+                <p><input type="password" name="password" value=""></p>
+                <p><label for="confirm_pw">Confirm pw:</label></p>
+                <p><input type="password" name="confirm_pw" value=""></p>
+                <p><input type="submit" name="" value="Register" ></p>
+            </form>
+        </div>
+        <div class="login">
+            <h1>Login</h1>
+            <form action="/processlog" method="POST">
+                {% csrf_token %}
+                <p><label for="email">Email</label></p>
+                <p><input type="text" name="email"></p>
+                <p><label for="password">Password</label></p>
+                <p><input type="password" name="password"></p>
+                <p><input type="submit" name="" value="login"></p>
+
+            </form>
+        </div>
+    </body>
+  </html>

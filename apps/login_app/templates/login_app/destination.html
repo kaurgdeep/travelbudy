@@ -1,0 +1,30 @@
+<html>
+    <head>
+      <meta charset="utf-8">
+      <title>login</title>
+      <style>
+         body{
+            background: linear-gradient(to right, #d0dd8d ,#fbf2ea, #e9cdd9,#f9fbd7);
+          }
+      </style>
+    </head>
+    <body>
+      <a href="/home">Home</a>
+      <a href="/logout">logout</a>
+        <h2>{{current_trip.destination}}</h2>
+        <p>Planned By:{{current_trip.created_by.first_name}} </p>
+        <p>Description:  {{current_trip.description}}</p>
+        <p>Travel Date From:  {{current_trip.travel_date_from}}</p>
+        <p>Travel Date To:  {{current_trip.travel_date_to}}</p>
+        <h3>Other users joining this trip</h3>
+          <ul>
+            {% for user in other_users %}
+            
+              <li>{{user.first_name}}</li>
+
+            {% endfor %}
+          </ul>
+
+          
+    </body>
+</html>    
